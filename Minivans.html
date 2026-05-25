@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minivans</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }         
+
+        body {
+            font-family:'Times New Roman', Times, serif;
+            background-color: #ffffff;
+            color: #0c0909;
+        }
+
+        header {
+            background-color: #010745 ;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.5em;
+        }
+
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            padding: 30px 50px;
+            max-width: 1000px;
+            margin-left: 180px;
+            grid-template-rows: auto;
+        }
+
+        
+
+        .car-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .car-box:hover {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.5s ease;
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+       
+        .car-box h3 {
+            font-size: 1.6em;
+            color: #000000;
+            margin-bottom: 15px;
+            
+        }
+
+        .car-box .price {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #350000;
+            margin-bottom: 15px;
+        }
+        
+
+        .car-box .specifications {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .car-box .specifications li {
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .car-box .specifications li:hover {
+            color: #2e0101;
+        }
+        
+        .sidebar {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding: 20px,10px;
+            color: white;
+            display: block;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out; /* new start*/ /* new end*/ 
+            overflow-y: scroll; /* new start*/ /* new end*/
+            padding-top: 20px; /* new start*/ /* new end*/
+            padding-bottom: 20px; /* new start*/ /* new end*/
+        
+            
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: background-color 0.3s;
+            margin-top: 0;
+        }
+       
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar h2 {
+            text-align:center;
+            color: #fff;
+            font-size: 22px;
+        }
+        .sidebar.active {
+            display: none;
+        }
+       
+        /* Basic button styling */
+#li {
+    background-color: #010745; 
+    border: none;
+    color: white; 
+    padding: 15px 32px;
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    border-radius: 8px; 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+#li:hover {
+    background-color: #010745;
+    transform: scale(1.1); 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Styling the anchor tag */
+#li a {
+    color: white; /* Keep the text white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Hover effect for the anchor inside button */
+#li a:hover {
+    color: #FFD700; /* Change text color to gold on hover */
+}
+
+
+        /* Responsive styling */
+        @media screen and (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvrToSzyYupjnI5PFn-zEQqDaw8-EkqgUivg&s');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* new start*/ 
+
+        .sidebar-toggle {
+            display: none;
+        }
+        
+
+@media screen and (max-width: 768px) {
+    .car-box:hover {
+        transform: none;
+    }
+     header {
+        display: flex;
+        justify-content: space-between;
+     }
+      #sidebar {
+  transform: translateX(-100%);
+}
+#sidebar.hidden {
+  transform: translateX(0%);
+}
+.sidebar-toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: x-large;
+    color:white;
+    
+    
+}
+
+      .container {
+        margin-left: 0px;
+        padding: 30px 24px;
+      }
+    }
+
+     /* Basic styling for the scrollbar */
+     ::-webkit-scrollbar {
+      width: 5px; /* Width of the vertical scrollbar */
+      height: 5px; /* Height of the horizontal scrollbar */
+    }
+
+    /* Styling for the scrollbar track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Light grey background of the scrollbar track */
+      border-radius: 0px; /* Rounded corners for the track */
+    }
+
+    /* Styling for the scrollbar thumb (the draggable part) */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(152, 152, 152); /* Grey thumb */
+      border-radius: 10px; /* Rounded corners for the thumb */
+      transition: background 0.3s; /* Smooth transition for thumb color change */
+    }
+
+    /* Styling for the thumb on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Darker grey thumb on hover */
+    }
+
+    /* Optional: Style the scrollbar corners (where horizontal and vertical scrollbars meet) */
+    ::-webkit-scrollbar-corner {
+      background: #f1f1f1; /* Same color as the track */
+    }
+
+
+    /* new end*/
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Minivans</h1>
+        <!-- cart icon--> 
+        <a href="cart.html" id="cart-icon" style="
+    text-decoration: none; 
+    color: white; 
+    font-size: 24px; 
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    background-color: #010745; 
+    padding: 10px 15px; 
+    border-radius: 50px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;">
+    🛒 <span id="total-bill">Cart</span>
+</a>
+
+         <!-- new start -->
+        <button class="sidebar-toggle" id="sidebar-toggle"Style="color=white;" >☰</button>
+         <!-- new end -->
+    </header>
+    <div class="sidebar"  id="sidebar">
+        <h2>Car And Bikes Categories</h2>
+        <a href="indexhome.html">Home Page</a>
+        <a href="index.html">Categories</a>
+        <a href="luxurysedans.html">Luxury Sedans</a>
+        <a href="SUVs.html">SUVs</a>
+        <a href="opulence.html">Opulence Cars</a>
+        <a href="convertibles.html">Convertibles</a>
+        <a href="electric.html">Electric Cars</a>
+        <a href="Minivans.html">Minivans</a>
+        <a href="hatchbacks.html">Hatchbacks</a>
+        <a href="crossovers.html">Crossovers</a>
+        <a href="bikes.html">Super Bikes</a>
+        <a href="chopperbikes.html">Chopper Bikes</a>
+        
+        <br>
+        <br>
+        <a href="policy.html">Policies And User Aggrements</a>
+    </div>
+
+    <div class="container">
+        <!-- Car 1 -->
+        <div class="car-box">
+            <img src="https://www.bolnews.com/wp-content/uploads/2024/01/FotoJet-17.jpg"width="300"height="200" alt="KIA Grand Carnival">
+            <h3>KIA Grand Carnival </h3>
+            <p class="price">33,000/day</p>
+            <ul class="specifications">
+                <li>Seats: 11</li>
+                <li>Fuel: petrol</li>
+                <li>Transmission: Manual</li>
+                <li>Average:8.6 L/100 km</li>
+                <li>Milage:44,000 km</li>
+                <li>condition 9.7/10</li>
+                <!-- MINI VANS BOOK NOW BUTTONS -->
+
+<button id="li" onclick="bookNow('Mini Vans', 'KIA Grand Carnival', 33000)">BOOK NOW!</button>
+
+                <button  id="li" class="add-to-cart" data-name="KIA Grand Carnival" data-price="33000 " data-img="https://www.bolnews.com/wp-content/uploads/2024/01/FotoJet-17.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+        <!-- Car 2 -->
+        <div class="car-box">
+            <img src="https://hyundaikpk.com/wp-content/uploads/2023/10/staria_exterior2.jpg"width="300"height="200" alt="Hyundai Staria">
+            <h3>Hyundai Staria</h3>
+            <p class="price">30,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 7-9 Passengers</li>
+                <li>Fuel: Gasoline or Diesel (Depending on engine)</li>
+                <li>Transmission:  8-Speed Automatic</li>
+                <li>Average:9 to 12 L/100 km (26-30 mpg).</li>
+                <li>Milage:55,300 km</li>
+                <li>condition :8/10</li>
+                <!-- MINI VANS BOOK NOW BUTTONS -->
+
+<button id="li" onclick="bookNow('Mini Vans', 'Hyundai Staria', 30000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="Hyundai Staria" data-price="30000 " data-img="https://hyundaikpk.com/wp-content/uploads/2023/10/staria_exterior2.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        
+        <!-- Car 3 -->
+        <div class="car-box">
+            <img src="https://www.toyota-central.com/Assets/images/Vehicle/HiaceDeluxe/Color/Color-Range.png"width="300"height="200" alt="Toyota Hiace luxury wagon">
+            <h3>Toyota Hiace luxury wagon</h3>
+            <p class="price">20,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 10</li>
+                <li>Fuel: Diesel</li>
+                <li>Transmission:6-speed Automatic </li>
+                <li>Average: 8-12 L/100 km (23-31 mpg).</li>
+                <li>Milage:68,000 km</li>
+                <li>condition :10/10</li>
+             <!-- MINI VANS BOOK NOW BUTTONS -->
+<button id="li" onclick="bookNow('Mini Vans', 'Toyota Hiace luxury wagon', 20000)">BOOK NOW!</button>
+
+                <button  id="li" class="add-to-cart" data-name="Toyota Hiace luxury wagon" data-price="20000 " data-img="https://www.toyota-central.com/Assets/images/Vehicle/HiaceDeluxe/Color/Color-Range.png">Add to Cart</button>
+
+            </ul>
+        </div>
+
+       
+
+        <!-- Car 4 -->
+        <div class="car-box">
+            <img src="https://www.postcrescent.com/gcdn/-mm-/d8ae6c35729db557fea21a1c14e320417a5481ed/c=0-306-1800-1321/local/-/media/WIGroup/Appleton/2014/08/12/1407872595000-2014-Honda-Odyssey-minivan.jpg"width="300"height="200" alt="Honda Odyssey">
+            <h3>Honda Odyssey</h3>
+            <p class="price">350,000/day</p>
+            <ul class="specifications">
+                <li>Seats: 8</li>
+                <li>Fuel: Gasoline</li>
+                <li>Transmission:10-speed automatic</li>
+                <li>Average: 8.6 L/100 km </li>
+              <li>Milage:99,200 km</li>
+                <li>condition:9/10</li>
+<button id="li" onclick="bookNow('Mini Vans', 'Honda Odyssey', 350000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="Honda Odyssey" data-price="350000 " data-img="https://www.postcrescent.com/gcdn/-mm-/d8ae6c35729db557fea21a1c14e320417a5481ed/c=0-306-1800-1321/local/-/media/WIGroup/Appleton/2014/08/12/1407872595000-2014-Honda-Odyssey-minivan.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 5 -->
+        <div class="car-box">
+            <img src="https://i.ytimg.com/vi/NWH1FDWEgeI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD373HRbmhmMP4Z-VvQahWkeGH5JA" alt="Mercedes-Benz V-Class">
+             <h3>Mercedes-Benz V-Class</h3>
+            <p class="price">45,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 7</li>
+                <li>Fuel: Petrol</li>
+                <li>Transmission: Automatic</li>
+                <li>Average:7-11 L/100 km .</li>
+                <li>Milage:88,000 km</li>
+                <li>condition:9/10</li>
+<button id="li" onclick="bookNow('Mini Vans', 'Mercedes-Benz V-Class', 45000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="Mercedes-Benz V-Class" data-price="45000 " data-img="https://i.ytimg.com/vi/NWH1FDWEgeI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD373HRbmhmMP4Z-VvQahWkeGH5JA">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 6 -->
+        <div class="car-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/2014_Suzuki_APV_Arena_SGX_1.5_DN42V_%2820190623%29.jpg" alt="Suzuki APV">
+            <h3>Suzuki APV</h3>
+            <p class="price">24,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 7</li>
+                <li>Fuel: petrol</li>
+                <li>Transmission: Manual</li>
+                <li>Average: 9-10 L/100 km .</li>
+                <li>Milage:59,000 km</li>
+                <li>condition:8/10</li>
+<button id="li" onclick="bookNow('Mini Vans', 'Suzuki APV', 24000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="Suzuki APV" data-price="24000 " data-img="https://upload.wikimedia.org/wikipedia/commons/3/32/2014_Suzuki_APV_Arena_SGX_1.5_DN42V_%2820190623%29.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; PDM Rental Service. All rights reserved.</p>
+    </footer>
+     <!-- new start -->
+     <script>
+        // Get references to the sidebar and toggle button
+const sidebar = document.getElementById('sidebar');
+const toggleButton = document.getElementById('sidebar-toggle');
+
+// Add an event listener for the button click
+toggleButton.addEventListener('click', function() {
+  // Toggle the 'hidden' class on the sidebar
+  sidebar.classList.toggle('hidden');
+   // Update button text based on sidebar visibility
+   if (sidebar.classList.contains('hidden')) {
+        toggleButton.textContent = '×';  // Show the three lines when sidebar is hidden
+      } else {
+        toggleButton.textContent = '☰';  // Show the "×" when sidebar is visible
+      }
+});
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        const name = button.getAttribute('data-name');
+        const price = parseInt(button.getAttribute('data-price'));
+        const img = button.getAttribute('data-img');
+
+        // Retrieve existing cart items from local storage or initialize as an empty array
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Add the new item
+        cart.push({ name, price, img });
+
+        // Save updated cart back to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(`${name} has been added to the cart.`);
+    });
+});
+function bookNow(category, car, price) {
+    const url = `form.html?category=${encodeURIComponent(category)}&car=${encodeURIComponent(car)}&price=${price}`;
+    console.log("Redirecting to:", url);
+    window.location.href = url;
+  }
+
+    </script>
+     <!-- new end -->
+</body>
+</html>

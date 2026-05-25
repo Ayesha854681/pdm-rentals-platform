@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUVs</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }         
+
+        body {
+            font-family:'Times New Roman', Times, serif;
+            background-color: #ffffff;
+            color: #0c0909;
+        }
+
+        header {
+            background-color: #010745 ;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.5em;
+        }
+
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            padding: 30px 50px;
+            max-width: 1000px;
+            margin-left: 180px;
+            grid-template-rows: auto;
+        }
+
+        
+
+        .car-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .car-box:hover {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.5s ease;
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+       
+        .car-box h3 {
+            font-size: 1.6em;
+            color: #000000;
+            margin-bottom: 15px;
+            
+        }
+
+        .car-box .price {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #350000;
+            margin-bottom: 15px;
+        }
+        
+
+        .car-box .specifications {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .car-box .specifications li {
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .car-box .specifications li:hover {
+            color: #2e0101;
+        }
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #010745;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .cart-icon:hover::after {
+            content: "View Cart";
+            position: absolute;
+            bottom: -30px;
+            background: #010745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .cart-icon:hover {
+            background-color: #575757;
+            transform: scale(1.1);
+        }
+        .sidebar {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding: 20px,10px;
+            color: white;
+            display: block;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out; /* new start*/ /* new end*/ 
+            overflow-y: scroll; /* new start*/ /* new end*/
+            padding-top: 20px; /* new start*/ /* new end*/
+            padding-bottom: 20px; /* new start*/ /* new end*/
+        
+            
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: background-color 0.3s;
+            margin-top: 0;
+        }
+       
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar h2 {
+            text-align:center;
+            color: #fff;
+            font-size: 22px;
+        }
+        .sidebar.active {
+            display: none;
+        }
+       
+        /* Basic button styling */
+#li {
+    background-color: #010745; 
+    border: none;
+    color: white; 
+    padding: 15px 32px;
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    border-radius: 8px; 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+#li:hover {
+    background-color: #010745;
+    transform: scale(1.1); 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Styling the anchor tag */
+#li a {
+    color: white; /* Keep the text white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Hover effect for the anchor inside button */
+#li a:hover {
+    color: #FFD700; /* Change text color to gold on hover */
+}
+
+
+        /* Responsive styling */
+        @media screen and (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvrToSzyYupjnI5PFn-zEQqDaw8-EkqgUivg&s');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* new start*/ 
+
+        .sidebar-toggle {
+            display: none;
+        }
+        
+
+@media screen and (max-width: 768px) {
+    .car-box:hover {
+        transform: none;
+    }
+     header {
+        display: flex;
+        justify-content: space-between;
+     }
+      #sidebar {
+  transform: translateX(-100%);
+}
+#sidebar.hidden {
+  transform: translateX(0%);
+}
+.sidebar-toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: x-large;
+    color:white;
+    
+    
+}
+
+      .container {
+        margin-left: 0px;
+        padding: 30px 24px;
+      }
+    }
+
+     /* Basic styling for the scrollbar */
+     ::-webkit-scrollbar {
+      width: 5px; /* Width of the vertical scrollbar */
+      height: 5px; /* Height of the horizontal scrollbar */
+    }
+
+    /* Styling for the scrollbar track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Light grey background of the scrollbar track */
+      border-radius: 0px; /* Rounded corners for the track */
+    }
+
+    /* Styling for the scrollbar thumb (the draggable part) */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(152, 152, 152); /* Grey thumb */
+      border-radius: 10px; /* Rounded corners for the thumb */
+      transition: background 0.3s; /* Smooth transition for thumb color change */
+    }
+
+    /* Styling for the thumb on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Darker grey thumb on hover */
+    }
+
+    /* Optional: Style the scrollbar corners (where horizontal and vertical scrollbars meet) */
+    ::-webkit-scrollbar-corner {
+      background: #f1f1f1; /* Same color as the track */
+    }
+
+
+    /* new end*/
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SUVs</h1>
+        <!-- cart icon--> 
+        <a href="cart.html" id="cart-icon" style="
+    text-decoration: none; 
+    color: white; 
+    font-size: 24px; 
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    background-color: #010745; 
+    padding: 10px 15px; 
+    border-radius: 50px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;">
+    🛒 <span id="total-bill">Cart</span>
+</a>
+
+         <!-- new start -->
+        <button class="sidebar-toggle" id="sidebar-toggle"Style="color=white;" >☰</button>
+         <!-- new end -->
+    </header>
+    <div class="sidebar"  id="sidebar">
+        <h2>Car And Bikes Categories</h2>
+        <a href="indexhome.html">Home Page</a>
+        <a href="index.html">Categories</a>
+        <a href="luxurysedans.html">Luxury Sedans</a>
+        <a href="SUVs.html">SUVs</a>
+        <a href="opulence.html">Opulence Cars</a>
+        <a href="convertibles.html">Convertibles</a>
+        <a href="electric.html">Electric Cars</a>
+        <a href="Minivans.html">Minivans</a>
+        <a href="hatchbacks.html">Hatchbacks</a>
+        <a href="crossovers.html">Crossovers</a>
+        <a href="bikes.html">Super Bikes</a>
+        <a href="chopperbikes.html">Chopper Bikes</a>
+        
+        <br>
+        <br>
+        <a href="policy.html">Policies And User Aggrements</a>
+    </div>
+
+    <div class="container">
+        <!-- Car 1 -->
+        <div class="car-box">
+            <img src="https://static0.carbuzzimages.com/wordpress/wp-content/uploads/2024/03/1099617-7.jpg"width="400"height="300" alt="bmw 2024-BMW-X7">
+            <h3>2024-BMW-X7</h3>
+            <p class="price">250,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: Petrol</li>
+                <li>Transmission: 8-speed automatic</li>
+                <li>Average: 10.7 L/100 km </li>
+                <li>Mileage: 50,000 km</li>
+                <li>Condition: 9.8/10</li>
+                <button onclick="bookNow('SUVs', '2024-BMW-X7', 250000)">BOOK NOW!</button>
+
+                <button  id="li" class="add-to-cart" data-name="2024-BMW-X7" data-price="250000 " data-img="https://static0.carbuzzimages.com/wordpress/wp-content/uploads/2024/03/1099617-7.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+        
+        <!-- Car 2 -->
+        <div class="car-box">
+            <img src="https://editorial.pxcrush.net/carsales/general/editorial/toyota-landcruiser-300-sahara-zx_0824.jpg?width=1024&height=682"width="300"height="200" alt="toyota-landcruiser-300-sahara-zx_0824">
+            <h3>Toyota Land Cruiser 300</h3>
+            <p class="price">68,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5-7</li>
+                <li>Fuel: Diesel</li>
+                <li>Transmission: 10-speed automatic</li>
+        
+                <li>Average: 8.9 L/100 km </li>
+                <li>Mileage: 75,599 km</li>
+
+                <li>Condition: 9/10</li>
+              
+<button onclick="bookNow('SUVs', 'Toyota Land Cruiser 300', 68000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="Toyota Land Cruiser 300" data-price="68000 " data-img="https://editorial.pxcrush.net/carsales/general/editorial/toyota-landcruiser-300-sahara-zx_0824.jpg?width=1024&height=682">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 3 -->
+        <div class="car-box">
+            <img src="https://imageio.forbes.com/specials-images/imageserve/66ccad0a50d7223893cec519/2024-Lexus-GX-550/960x0.png?format=png&width=960"width="300"height="200" alt="2024-Lexus-GX-550">
+            <h3>2024-Lexus-GX-550</h3>
+            <p class="price">80,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 6–7 </li>
+                <li>Fuel: Petrol</li>
+                <li>Transmission:  10-speed automatic</li>
+                <li>Average: 13.5 L/100 km </li>
+                <li>Mileage: 55,300 km</li>
+                <li>Condition: 9/10</li>
+<button onclick="bookNow('SUVs', '2024-Lexus-GX-550', 80000)">BOOK NOW!</button>
+
+                <button  id="li" class="add-to-cart" data-name="2024-Lexus-GX-550" data-price="80000 " data-img="https://imageio.forbes.com/specials-images/imageserve/66ccad0a50d7223893cec519/2024-Lexus-GX-550/960x0.png?format=png&width=960">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 4 -->
+        <div class="car-box">
+            <img src="https://vehicle-images.dealerinspire.com/05e0-11001579/thumbnails/large/SAL1P9EU7RA414263/b3738a694e1036ae1043b4dd010e576d.jpg"width="300"height="200" alt="range rover sport">
+            <h3>Range Rover Sport</h3>
+            <p class="price">175,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: Petrol / Plug-in Hybrid (PHEV)</li>
+                <li>Transmission: 8-speed automatic</li>
+                <li>Average: 10-11 L/100 km(Petrol) <br> 2–3 L/100 km(PHEV)</li>
+                <li>Mileage: 100,000 km</li>
+                <li>Condition: 9.5/10</li>
+<button onclick="bookNow('SUVs', 'Range Rover Sport', 175000)">BOOK NOW!</button>
+
+                <button  id="li" class="add-to-cart" data-name="Range Rover Sport" data-price="175000 " data-img="https://vehicle-images.dealerinspire.com/05e0-11001579/thumbnails/large/SAL1P9EU7RA414263/b3738a694e1036ae1043b4dd010e576d.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 5 -->
+        <div class="car-box">
+            <img src="https://i.gaw.to/vehicles/photos/40/23/402337-2021-mercedes-benz-gle.jpg?1024x640"width="300"height="200" alt="mercedes-benz-gle">
+            <h3>Mercedes-Benz-GLE</h3>
+            <p class="price"> 200,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5-7</li>
+                <li>Fuel: Petrol / Diesel</li>
+                <li>Transmission: 9-speed automatic</li>
+                <li>Average: 9.1–9.5 L/100 km(Petrol)<br>  6.6L/100 km(Diesel)</li>
+                <li>Mileage: 65,000 km</li>
+                <li>Condition: 9.5/10</li>
+<button onclick="bookNow('SUVs', 'Mercedes-Benz-GLE', 200000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="Mercedes-Benz-GLE" data-price="200000 " data-img="https://i.gaw.to/vehicles/photos/40/23/402337-2021-mercedes-benz-gle.jpg?1024x640">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 6 -->
+        <div class="car-box">
+            <img src="https://cdn.motor1.com/images/mgl/mrY7q/s1/audi-q8-tfsi-e-quattro-2020.webp" width="300"height="200"alt="audi q8">
+            <h3>Audi Q8</h3>
+            <p class="price">150,000  Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: Petrol</li>
+                <li>Transmission: 8-speed Automatic</li>
+                <li>Average: 11 L/100 km</li>
+                <li>Mileage: 89,000 km</li>
+                <li>Condition: 9/10</li>
+<button onclick="bookNow('SUVs', 'Audi Q8', 150000)">BOOK NOW!</button>
+
+                <button  id="li" class="add-to-cart" data-name="Audi Q8" data-price="150000 " data-img="https://cdn.motor1.com/images/mgl/mrY7q/s1/audi-q8-tfsi-e-quattro-2020.webp">Add to Cart</button>
+
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; PDM Rental Service. All rights reserved.</p>
+    </footer>
+       <!-- new start -->
+       <script>
+        // Get references to the sidebar and toggle button
+const sidebar = document.getElementById('sidebar');
+const toggleButton = document.getElementById('sidebar-toggle');
+
+// Add an event listener for the button click
+toggleButton.addEventListener('click', function() {
+  // Toggle the 'hidden' class on the sidebar
+  sidebar.classList.toggle('hidden');
+   // Update button text based on sidebar visibility
+   if (sidebar.classList.contains('hidden')) {
+        toggleButton.textContent = '×';  // Show the three lines when sidebar is hidden
+      } else {
+        toggleButton.textContent = '☰';  // Show the "×" when sidebar is visible
+      }
+});
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        const name = button.getAttribute('data-name');
+        const price = parseInt(button.getAttribute('data-price'));
+        const img = button.getAttribute('data-img');
+
+        // Retrieve existing cart items from local storage or initialize as an empty array
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Add the new item
+        cart.push({ name, price, img });
+
+        // Save updated cart back to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(`${name} has been added to the cart.`);
+    });
+});
+
+  function bookNow(category, car, price) {
+    const url = `form.html?category=${encodeURIComponent(category)}&car=${encodeURIComponent(car)}&price=${price}`;
+    console.log("Redirecting to:", url); // For testing in console
+    window.location.href = url;
+  }
+
+
+    </script>
+     <!-- new end -->
+</body>
+</html>

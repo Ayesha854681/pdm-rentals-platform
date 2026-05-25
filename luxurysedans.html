@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury sedans</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }         
+
+        body {
+            font-family:'Times New Roman', Times, serif;
+            background-color: #ffffff;
+            color: #0c0909;
+        }
+
+        header {
+            background-color: #010745 ;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.5em;
+        }
+
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            padding: 30px 50px;
+            max-width: 1000px;
+            margin-left: 180px;
+            grid-template-rows: auto;
+        }
+
+        
+
+        .car-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .car-box:hover {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.5s ease;
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+       
+        .car-box h3 {
+            font-size: 1.6em;
+            color: #000000;
+            margin-bottom: 15px;
+            
+        }
+
+        .car-box .price {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #350000;
+            margin-bottom: 15px;
+        }
+        
+
+        .car-box .specifications {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .car-box .specifications li {
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .car-box .specifications li:hover {
+            color: #2e0101;
+        }
+        
+        .sidebar {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding: 20px,10px;
+            color: white;
+            display: block;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out; /* new start*/ /* new end*/ 
+            overflow-y: scroll; /* new start*/ /* new end*/
+            padding-top: 20px; /* new start*/ /* new end*/
+            padding-bottom: 20px; /* new start*/ /* new end*/
+        
+            
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: background-color 0.3s;
+            margin-top: 0;
+        }
+       
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar h2 {
+            text-align:center;
+            color: #fff;
+            font-size: 22px;
+        }
+        .sidebar.active {
+            display: none;
+        }
+       
+        /* Basic button styling */
+#li {
+    background-color: #010745; 
+    border: none;
+    color: white; 
+    padding: 15px 32px;
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    border-radius: 8px; 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+#li:hover {
+    background-color: #010745;
+    transform: scale(1.1); 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Styling the anchor tag */
+#li a {
+    color: white; /* Keep the text white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Hover effect for the anchor inside button */
+#li a:hover {
+    color: #FFD700; /* Change text color to gold on hover */
+}
+
+
+        /* Responsive styling */
+        @media screen and (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvrToSzyYupjnI5PFn-zEQqDaw8-EkqgUivg&s');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* new start*/ 
+
+        .sidebar-toggle {
+            display: none;
+        }
+        
+
+@media screen and (max-width: 768px) {
+    .car-box:hover {
+        transform: none;
+    }
+     header {
+        display: flex;
+        justify-content: space-between;
+     }
+      #sidebar {
+  transform: translateX(-100%);
+}
+#sidebar.hidden {
+  transform: translateX(0%);
+}
+.sidebar-toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: x-large;
+    color: white;
+    
+    
+}
+
+      .container {
+        margin-left: 0px;
+        padding: 30px 24px;
+      }
+    }
+
+     /* Basic styling for the scrollbar */
+     ::-webkit-scrollbar {
+      width: 5px; /* Width of the vertical scrollbar */
+      height: 5px; /* Height of the horizontal scrollbar */
+    }
+
+    /* Styling for the scrollbar track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Light grey background of the scrollbar track */
+      border-radius: 0px; /* Rounded corners for the track */
+    }
+
+    /* Styling for the scrollbar thumb (the draggable part) */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(152, 152, 152); /* Grey thumb */
+      border-radius: 10px; /* Rounded corners for the thumb */
+      transition: background 0.3s; /* Smooth transition for thumb color change */
+    }
+
+    /* Styling for the thumb on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Darker grey thumb on hover */
+    }
+
+    /* Optional: Style the scrollbar corners (where horizontal and vertical scrollbars meet) */
+    ::-webkit-scrollbar-corner {
+      background: #f1f1f1; /* Same color as the track */
+    }
+
+
+    /* new end*/
+    </style>
+</head>
+<body>
+    <header>
+        
+        
+        <h1>Luxury sedans</h1>
+        <!-- cart icon--> 
+        <a href="cart.html" id="cart-icon" style="
+    text-decoration: none; 
+    color: white; 
+    font-size: 24px; 
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    background-color: #010745; 
+    padding: 10px 15px; 
+    border-radius: 50px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;">
+    🛒 <span id="total-bill">Cart</span>
+</a>
+
+         <!-- new start -->
+        <button class="sidebar-toggle" id="sidebar-toggle" >☰</button>
+         <!-- new end -->
+    </header>
+    <div class="sidebar" id="sidebar"> 
+        <h2>Car And Bikes Categories</h2>
+        <a href="indexhome.html">Home Page</a>
+        <a href="index.html">Categories</a>
+        <a href="luxurysedans.html">Luxury Sedans</a>
+        <a href="SUVs.html">SUVs</a>
+        <a href="opulence.html">Opulence Cars</a>
+        <a href="convertibles.html">Convertibles</a>
+        <a href="electric.html">Electric Cars</a>
+        <a href="Minivans.html">Minivans</a>
+        <a href="hatchbacks.html">Hatchbacks</a>
+        <a href="crossovers.html">Crossovers</a>
+        <a href="bikes.html">Super Bikes</a>
+        <a href="chopperbikes.html">Chopper Bikes</a>
+        
+        <br>
+        <br>
+        <a href="policy.html">Policies And User Aggrements</a>
+
+    </div>
+
+
+    <div class="container">
+        <!-- Car 1 -->
+        <div class="car-box">
+            <img src="https://audiapproved.com/_next/image?url=https%3A%2F%2Fadmin.audiapproved.com%2Fuploads%2Fcars%2F98962%2Fupload-12.jpg&w=3840&q=75"width="300"height="200" alt="Audi A5">
+            <h3> Audi A5</h3>
+            <p class="price">220,000/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: petrol</li>
+                <li>Transmission: Manual</li>
+                <li>Average: 6 - 7 L/100 km </li>
+                <li>Milage:50,000 km</li>
+                <li>condition:9.8/10</li>
+                <button id="li" onclick="bookNow('Luxury Sedans', 'Audi A5', 220000)">BOOK NOW!</button>
+            
+                <button  id="li" class="add-to-cart" data-name="Audi A5" data-price="220000" data-img="https://audiapproved.com/_next/image?url=https%3A%2F%2Fadmin.audiapproved.com%2Fuploads%2Fcars%2F98962%2Fupload-12.jpg&w=3840&q=75">Add to Cart</button>
+
+                
+            </ul>
+        </div>
+        
+        <!-- Car 2 -->
+        <div class="car-box">
+            <img src="https://carsforsale.co.ke/wp-content/uploads/2024/01/2018-Toyota-Crown-RS-2.0-Turbo.jpg"width="300"height="200" alt="Toyota crown">
+            <h3>Toyota crown</h3>
+            <p class="price">200,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: petrol</li>
+                <li>Transmission: Automatic</li>
+                <li>Average: 11–14 km/L.</li>
+                <li>Milage:65,000 km</li>
+                <li>condition:8/10</li>
+               <button id= "li" onclick="bookNow('Luxury Sedans', 'Toyota Crown', 200000)">BOOK NOW!</button>
+                
+                <button  id="li" class="add-to-cart" data-name="Toyota crown" data-price="200000" data-img="https://carsforsale.co.ke/wp-content/uploads/2024/01/2018-Toyota-Crown-RS-2.0-Turbo.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 3 -->
+        <div class="car-box">
+            <img src="https://vehicle-images.dealerinspire.com/ccfd-110005802/KMHLS4DG1RU700004/df09007020aceea59e2a36d6dfcf87e9.jpg"width="300"height="200" alt="Elantra 2024">
+            <h3>Elantra 2024</h3>
+            <p class="price">75,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: petrol</li>
+                <li>Transmission: Automatic</li>
+                <li>Average:4 - 5 L/100 km</li>
+                <li>Milage:43,000 km</li>
+                <li>condition: 8/10</li>
+                <button id="li" onclick="bookNow('Luxury Sedans', 'Elantra 2024', 75000)">BOOK NOW!</button>
+            
+                <button  id="li" class="add-to-cart" data-name="Elantra 2024" data-price="75000" data-img="https://vehicle-images.dealerinspire.com/ccfd-110005802/KMHLS4DG1RU700004/df09007020aceea59e2a36d6dfcf87e9.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 4 -->
+        <div class="car-box">
+            <img src="https://silamparitv.disway.id/upload/3f06321284f1299de998045b2d4c3a85.jpg" alt="rs">
+            <h3>Civic Rs 2024</h3>
+            <p class="price">64,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: petrol</li>
+                <li>Transmission: Automatic</li>
+                <li>Average: 8–12 km/L </li>
+                <li>Milage:55,000 km</li>
+                <li>condition: 10/10</li>
+                <button id="li" onclick="bookNow('Luxury Sedans', 'Civic Rs 2024', 64000)">BOOK NOW!</button>
+               
+                <button  id="li" class="add-to-cart" data-name="Civic Rs 2024" data-price="64000" data-img="https://silamparitv.disway.id/upload/3f06321284f1299de998045b2d4c3a85.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+       
+        <!-- Car 5 -->
+        <div class="car-box">
+            <img src="https://paultan.org/image/2022/02/2022-Toyota-Camry-facelift-Malaysia-1.jpg" alt="2022 Camry">
+            <h3>2022 Camry</h3>
+            <p class="price">45,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: Petrol</li>
+                <li>Transmission: Automatic</li>
+                <li>Average:8 - 9 L/100 km</li>
+                <li>Milage:77,000 km</li>
+                <li>condition: 9.5/10</li>
+                <button id="li" onclick="bookNow('Luxury Sedans', '2022 Camry', 45000)">BOOK NOW!</button>
+                
+                <button  id="li" class="add-to-cart" data-name="2022 Camry" data-price="45000" data-img="https://paultan.org/image/2022/02/2022-Toyota-Camry-facelift-Malaysia-1.jpg">Add to Cart</button>
+
+            </ul>
+        </div>
+
+        <!-- Car 6 -->
+        <div class="car-box">
+            <img src="https://www.tulsahyundai.com/blogs/3678/wp-content/uploads/2022/11/2023-Hyundai-Sonata.jpeg"width="300"height="200" alt="Sonata 2023">
+            <h3>Sonata 2023</h3>
+            <p class="price">350,000/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li>Fuel: petrol</li>
+                <li>Transmission: Automatic</li>
+                <li>Average:6 - 7 L/100 km</li>
+                <li>Milage:33,000 km</li>
+                <li>condition:9/10</li>
+                <button id="li" onclick="bookNow('Luxury Sedans', 'Sonata 2023', 350000)">BOOK NOW!</button>
+
+                <button  id="li" class="add-to-cart" data-name="Sonata 2023" data-price="350000" data-img="https://www.tulsahyundai.com/blogs/3678/wp-content/uploads/2022/11/2023-Hyundai-Sonata.jpeg">Add to Cart</button>
+
+                
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; PDM Rental Service. All rights reserved.</p>
+    </footer>
+    <!-- new start -->
+   <!-- Scripts -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('sidebar-toggle');
+
+        toggleButton.addEventListener('click', function () {
+            sidebar.classList.toggle('hidden');
+            toggleButton.textContent = sidebar.classList.contains('hidden') ? '☰' : '×';
+        });
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                const price = parseInt(button.getAttribute('data-price'));
+                const img = button.getAttribute('data-img');
+
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ name, price, img });
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                alert(`${name} has been added to the cart.`);
+            });
+        });
+
+        function bookNow(category, car, price) {
+            const url = `form.html?category=${encodeURIComponent(category)}&car=${encodeURIComponent(car)}&price=${price}`;
+            console.log("Redirecting to:", url);
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

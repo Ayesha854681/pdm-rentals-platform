@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>electric cars</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }         
+
+        body {
+            font-family:'Times New Roman', Times, serif;
+            background-color: #ffffff;
+            color: #0c0909;
+        }
+
+        header {
+            background-color: #010745 ;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.5em;
+        }
+
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            padding: 30px 50px;
+            max-width: 1000px;
+            margin-left: 180px;
+            grid-template-rows: auto;
+        }
+
+        
+
+        .car-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .car-box:hover {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.5s ease;
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+       
+        .car-box h3 {
+            font-size: 1.6em;
+            color: #000000;
+            margin-bottom: 15px;
+            
+        }
+
+        .car-box .price {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #350000;
+            margin-bottom: 15px;
+        }
+        
+
+        .car-box .specifications {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .car-box .specifications li {
+            margin-bottom: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .car-box .specifications li:hover {
+            color: #2e0101;
+        }
+        
+        .sidebar {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding: 20px,10px;
+            color: white;
+            display: block;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out; /* new start*/ /* new end*/ 
+            overflow-y: scroll; /* new start*/ /* new end*/
+            padding-top: 20px; /* new start*/ /* new end*/
+            padding-bottom: 20px; /* new start*/ /* new end*/
+        
+            
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: background-color 0.3s;
+            margin-top: 0;
+        }
+       
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar h2 {
+            text-align:center;
+            color: #fff;
+            font-size: 22px;
+        }
+        .sidebar.active {
+            display: none;
+        }
+        button {
+  background-color: #010745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color:#010745;
+}
+
+       
+        /* Basic button styling */
+#li {
+    background-color: #010745; 
+    border: none;
+    color: white; 
+    padding: 15px 32px;
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    border-radius: 8px; 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+#li:hover {
+    background-color: #010745;
+    transform: scale(1.1); 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Styling the anchor tag */
+#li a {
+    color: white; /* Keep the text white */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Hover effect for the anchor inside button */
+#li a:hover {
+    color: #FFD700; /* Change text color to gold on hover */
+}
+
+
+      
+        @media screen and (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1.2em;
+            }
+        }
+
+      
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvrToSzyYupjnI5PFn-zEQqDaw8-EkqgUivg&s');
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        
+
+        .sidebar-toggle {
+            display: none;
+        }
+        
+
+@media screen and (max-width: 768px) {
+    .car-box:hover {
+        transform: none;
+    }
+     header {
+        display: flex;
+        justify-content: space-between;
+     }
+      #sidebar {
+  transform: translateX(-100%);
+}
+#sidebar.hidden {
+  transform: translateX(0%);
+}
+.sidebar-toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: x-large;
+    color:white;
+    
+    
+}
+
+      .container {
+        margin-left: 0px;
+        padding: 30px 24px;
+      }
+    }
+
+     
+     ::-webkit-scrollbar {
+      width: 5px; 
+      height: 5px; 
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+      border-radius: 0px; 
+    }
+
+    /* Styling for the scrollbar thumb (the draggable part) */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(152, 152, 152); /* Grey thumb */
+      border-radius: 10px; /* Rounded corners for the thumb */
+      transition: background 0.3s; /* Smooth transition for thumb color change */
+    }
+
+    /* Styling for the thumb on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Darker grey thumb on hover */
+    }
+
+    /* Optional: Style the scrollbar corners (where horizontal and vertical scrollbars meet) */
+    ::-webkit-scrollbar-corner {
+      background: #f1f1f1; /* Same color as the track */
+    }
+
+
+    /* new end*/
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Electric cars</h1>
+        <!-- cart icon--> 
+        <a href="cart.html" id="cart-icon" style="
+    text-decoration: none; 
+    color: white; 
+    font-size: 24px; 
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    background-color: #010745; 
+    padding: 10px 15px; 
+    border-radius: 50px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;">
+    🛒 <span id="total-bill">Cart</span>
+</a>
+
+         <!-- new start -->
+        <button class="sidebar-toggle" id="sidebar-toggle"Style="color=white;" >☰</button>
+         <!-- new end -->
+    </header>
+<div class="sidebar">
+    <h2>Car And Bikes Categories</h2>
+    <a href="indexhome.html">Home Page</a>
+    <a href="index.html">Categories</a>
+    <a href="luxurysedans.html">Luxury Sedans</a>
+    <a href="SUVs.html">SUVs</a>
+    <a href="opulence.html">Opulence Cars</a>
+    <a href="convertibles.html">Convertibles</a>
+    <a href="electric.html">Electric Cars</a>
+    <a href="Minivans.html">Minivans</a>
+    <a href="hatchbacks.html">Hatchbacks</a>
+    <a href="crossovers.html">Crossovers</a>
+    <a href="bikes.html">Super Bikes</a>
+    <a href="chopperbikes.html">Chopper Bikes</a>
+    
+    <br>
+    <br>
+    <a href="policy.html">Policies And User Aggrements</a>
+</div>
+
+    <div class="container">
+        <!-- Car 1 -->
+        <div class="car-box">
+            <img src="https://images.carexpert.com.au/crop/1200/630/app/uploads/2024/01/BMW-i4-eDrive35_HERO-16x9-1.jpg"width="300"height="200" alt="BMW i4">
+            <h3>BMW i4</h3>
+            <p class="price">53,000/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li> Electric (battery-powered, no internal combustion engine).</li>
+                <li>Battery Capacity :81.5 kWh </li>
+                <li>Transmission:Automatic</li>
+                <li>Average:2.25 to 2.47 L/100 km</li>
+                <li>Milage:44,000 km</li>
+                <li>condition 9.8/10</li>
+                <button onclick="bookNow('Electric Cars', 'BMW i4', 53000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="BMW i4" data-price="53000 " data-img="https://images.carexpert.com.au/crop/1200/630/app/uploads/2024/01/BMW-i4-eDrive35_HERO-16x9-1.jpg">Add to Cart</button>
+            </ul>
+        </div>
+        <!-- Car 2 -->
+        <div class="car-box">
+            <img src="https://media.autoexpress.co.uk/image/private/s--X-WVjvBW--/f_auto,t_content-image-full-desktop@1/v1700047049/autoexpress/2023/11/BYD%20Seal%202023%20UK-13.jpg"width="300"height="200" alt="BYD Seal">
+            <h3>BYD Seal</h3>
+            <p class="price">60,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats:5</li>
+                <li> Electric (battery-powered)</li>
+                <li>Battery Capacity:61.4 kWh</li>
+                <li>Transmission: Automatic</li>
+                <li>Average:1.63 to 1.85 L/100 km </li>
+                <li>Milage:77,900 km</li>
+                <li>condition :8/10</li>
+<button onclick="bookNow('Electric Cars', 'BYD Seal', 60000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="BYD Seal" data-price="60000" data-img="https://media.autoexpress.co.uk/image/private/s--X-WVjvBW--/f_auto,t_content-image-full-desktop@1/v1700047049/autoexpress/2023/11/BYD%20Seal%202023%20UK-13.jpg">Add to Cart</button>
+            </ul>
+        </div>
+
+        
+        <!-- Car 3 -->
+        <div class="car-box">
+            <img src="https://di-uploads-pod15.dealerinspire.com/porschenortholmstedrafihautogroup/uploads/2024/04/2025-Porsche-Taycan.jpg"width="300"height="200" alt="Porsche Taycan ">
+            <h3>Porsche Taycan </h3>
+            <p class="price">70,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li> Electric (battery-powered, no internal combustion engine).</li>
+                <li>Battery Capacity :93.4 kWh</li>
+                <li>Transmission:Automatic</li>
+                <li>Average:2.47 to 2.92 L/100 km</li>
+                <li>Milage:33,000 km</li>
+                <li>condition 9.8/10</li>
+<button onclick="bookNow('Electric Cars', 'Porsche Taycan', 70000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="Porsche Taycan" data-price="70000 " data-img="https://di-uploads-pod15.dealerinspire.com/porschenortholmstedrafihautogroup/uploads/2024/04/2025-Porsche-Taycan.jpg">Add to Cart</button>
+            </ul>
+        </div>
+
+       
+
+        <!-- Car 4 -->
+        <div class="car-box">
+            <img src="https://img.freepik.com/premium-photo/futuristic-audi-q4-electric-suv-modern-showroom-highquality-stock-image_1097779-9828.jpg"width="300"height="200" alt="Audi Q4">
+            <h3>Audi Etron</h3>
+            <p class="price">350,000/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li> Electric (battery-powered)</li>
+                <li>Battery Capacity :82 kWh</li>
+                <li>Transmission:Automatic</li>
+                <li>Average:2.02 to 2.47 L/100 km </li>
+                <li>Milage:55,800 km </li>
+                <li>condition 8/10</li>
+<button onclick="bookNow('Electric Cars', 'Audi Etron', 350000)">BOOK NOW!</button>
+                
+                <button  id="li" class="add-to-cart" data-name="Audi Etron" data-price="350000 " data-img="https://img.freepik.com/premium-photo/futuristic-audi-q4-electric-suv-modern-showroom-highquality-stock-image_1097779-9828.jpg">Add to Cart</button>
+              
+            </ul>
+        </div>
+
+        <!-- Car 5 -->
+        <div class="car-box">
+            <img src="https://www.electrive.com/media/2024/05/kia-ev6-2024-scaled-e1715677872698.jpg" alt="KIA EV6">
+             <h3>KIA EV6</h3>
+            <p class="price">45,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li> Electric (battery-powered)</li>
+                <li>Battery Capacity :77.4 kWh</li>
+                <li>Transmission:Automatic</li>
+                <li>Average:1.80 to 2.13 L/100 km </li>
+                <li>Milage:44,000 km</li>
+                <li>condition: 9/10</li>
+<button onclick="bookNow('Electric Cars', 'KIA EV6', 45000)">BOOK NOW!</button>
+
+
+                <button  id="li" class="add-to-cart" data-name="KIA EV6" data-price="45000 " data-img="https://www.electrive.com/media/2024/05/kia-ev6-2024-scaled-e1715677872698.jpg">Add to Cart</button>
+            </ul>
+        </div>
+
+        <!-- Car 6 -->
+        <div class="car-box">
+            <img src="https://di-uploads-pod30.dealerinspire.com/jerryseinercadillac/uploads/2023/03/mlp-img-top-2024-lyriq-temp.jpg" alt="Cadillac Lyriq">
+            <h3>Cadillac Lyriq</h3>
+            <p class="price">54,000 Rs/day</p>
+            <ul class="specifications">
+                <li>Seats: 5</li>
+                <li> Electric (battery-powered)</li>
+                <li>Battery Capacity : 190 kW</li>
+                <li>Transmission:Automatic</li>
+                <li>Average: 2.02 to 2.47 L/100 km </li>
+                <li>Milage:66,000 km</li>
+                <li>condition: 7.8/10</li>
+<button onclick="bookNow('Electric Cars', 'Cadillac Lyriq', 54000)">BOOK NOW!</button>
+                <button  id="li" class="add-to-cart" data-name="" data-price="54000 " data-img="https://di-uploads-pod30.dealerinspire.com/jerryseinercadillac/uploads/2023/03/mlp-img-top-2024-lyriq-temp.jpg">Add to Cart</button>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; PDM Rental Service. All rights reserved.</p>
+    </footer>
+     <!-- new start -->
+     <script>
+        // Get references to the sidebar and toggle button
+const sidebar = document.getElementById('sidebar');
+const toggleButton = document.getElementById('sidebar-toggle');
+
+// Add an event listener for the button click
+toggleButton.addEventListener('click', function() {
+  // Toggle the 'hidden' class on the sidebar
+  sidebar.classList.toggle('hidden');
+   // Update button text based on sidebar visibility
+   if (sidebar.classList.contains('hidden')) {
+        toggleButton.textContent = '×';  // Show the three lines when sidebar is hidden
+      } else {
+        toggleButton.textContent = '☰';  // Show the "×" when sidebar is visible
+      }
+});
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        const name = button.getAttribute('data-name');
+        const price = parseInt(button.getAttribute('data-price'));
+        const img = button.getAttribute('data-img');
+
+        // Retrieve existing cart items from local storage or initialize as an empty array
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Add the new item
+        cart.push({ name, price, img });
+
+        // Save updated cart back to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(`${name} has been added to the cart.`);
+    });
+});
+ function bookNow(category, car, price) {
+    const url = `form.html?category=${encodeURIComponent(category)}&car=${encodeURIComponent(car)}&price=${price}`;
+    console.log("Redirecting to:", url);
+    window.location.href = url;
+  }
+    </script>
+     <!-- new end -->
+</body>
+</html>
